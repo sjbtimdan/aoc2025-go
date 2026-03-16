@@ -3,7 +3,6 @@ package days
 import (
 	"bytes"
 	"sjbtimdan/aoc2025-go/utils"
-	"strconv"
 )
 
 func Day1(contents []byte) utils.Answers {
@@ -28,20 +27,12 @@ func Day1(contents []byte) utils.Answers {
 
 func parseInstruction(instruction []byte) int {
 	magnitudeStr := string(instruction[1:])
-	magnitude := AtoiOrPanic(magnitudeStr)
+	magnitude := utils.AtoiOrPanic(magnitudeStr)
 	if instruction[0] == 'L' {
 		return -magnitude
 	} else {
 		return magnitude
 	}
-}
-
-func AtoiOrPanic(s string) int {
-	value, err := strconv.Atoi(string(s))
-	if err != nil {
-		panic(err)
-	}
-	return value
 }
 
 func RemEuclid(a, b int) int {

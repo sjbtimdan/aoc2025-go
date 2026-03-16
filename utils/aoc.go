@@ -27,6 +27,13 @@ func IntAnswers(part1, part2 int) Answers {
 	}
 }
 
+func Int64Answers(part1, part2 int64) Answers {
+	return Answers{
+		Part1: strconv.FormatInt(part1, 10),
+		Part2: strconv.FormatInt(part2, 10),
+	}
+}
+
 func StringAnswers(part1, part2 string) Answers {
 	return Answers{
 		Part1: part1,
