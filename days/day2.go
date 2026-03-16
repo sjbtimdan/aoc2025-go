@@ -51,11 +51,11 @@ func sumInvalidIds(interval Interval) int64 {
 	endPrefixStr := interval.endStr[:len(interval.endStr)/2]
 	incrementLen := len(interval.startStr) / 2
 	increment := int64(math.Pow10(incrementLen)) + 1
-	start := utils.StrconvOrPanic(startPrefixStr + startPrefixStr)
+	start := utils.ParseIntOrPanic(startPrefixStr + startPrefixStr)
 	if start < interval.start {
 		start += increment
 	}
-	end := utils.StrconvOrPanic(endPrefixStr + endPrefixStr)
+	end := utils.ParseIntOrPanic(endPrefixStr + endPrefixStr)
 	if end > interval.end {
 		end -= increment
 	}
@@ -73,9 +73,9 @@ func parseInterval(line []byte) Interval {
 
 func toInterval(startStr, endStr string) Interval {
 	return Interval{
-		start:    utils.StrconvOrPanic(startStr),
+		start:    utils.ParseIntOrPanic(startStr),
 		startStr: startStr,
-		end:      utils.StrconvOrPanic(endStr),
+		end:      utils.ParseIntOrPanic(endStr),
 		endStr:   endStr,
 	}
 }

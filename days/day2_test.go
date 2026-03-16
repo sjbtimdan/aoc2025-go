@@ -1,7 +1,7 @@
 package days
 
 import (
-	"os"
+	_ "embed"
 	"strconv"
 	"testing"
 
@@ -25,12 +25,11 @@ func TestCountInvalidIdsPart1(t *testing.T) {
 	must.Eq(t, int64(0), part1SumInvalidIds(1698522, 1698528))
 }
 
+//go:embed test_resources/day2.txt
+var day2_file []byte
+
 func TestDay2(t *testing.T) {
-	contents, err := os.ReadFile("../test_resources/day2.txt") // Go 1.16+
-	if err != nil {
-		panic(err) // abort on error
-	}
-	result := Day2(contents)
+	result := Day2(day2_file)
 	must.Eq(t, "1227775554", result.Part1)
 }
 

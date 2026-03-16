@@ -6,13 +6,21 @@ import (
 	"github.com/shoenig/test/must"
 )
 
-func TestStrconvOrPanic(t *testing.T) {
-	must.Eq(t, int64(42), StrconvOrPanic("42"))
-	must.Eq(t, int64(-7), StrconvOrPanic("-7"))
+func TestParseIntOrPanic(t *testing.T) {
+	must.Eq(t, int64(42), ParseIntOrPanic("42"))
+	must.Eq(t, int64(-7), ParseIntOrPanic("-7"))
 }
 
-func TestStrconvOrPanic_Invalid(t *testing.T) {
-	must.Panic(t, func() { StrconvOrPanic("abc") })
+func TestParseIntOrPanic_Invalid(t *testing.T) {
+	must.Panic(t, func() { ParseIntOrPanic("abc") })
+}
+
+func TestParseUintOrPanic(t *testing.T) {
+	must.Eq(t, uint(42), ParseUintOrPanic("42"))
+}
+
+func TestParseUintOrPanic_Invalid(t *testing.T) {
+	must.Panic(t, func() { ParseUintOrPanic("abc") })
 }
 
 func TestAtoiOrPanic(t *testing.T) {

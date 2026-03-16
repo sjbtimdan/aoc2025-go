@@ -1,7 +1,7 @@
 package days
 
 import (
-	"os"
+	_ "embed"
 	"testing"
 
 	"github.com/shoenig/test/must"
@@ -12,12 +12,11 @@ func TestParseInstruction(t *testing.T) {
 	must.Eq(t, 456, parseInstruction([]byte("R456")))
 }
 
+//go:embed test_resources/day1.txt
+var day1_file []byte
+
 func TestDay1(t *testing.T) {
-	contents, err := os.ReadFile("../test_resources/day1.txt") // Go 1.16+
-	if err != nil {
-		panic(err) // abort on error
-	}
-	result := Day1(contents)
+	result := Day1(day1_file)
 	must.Eq(t, "3", result.Part1)
 	must.Eq(t, "6", result.Part2)
 }
