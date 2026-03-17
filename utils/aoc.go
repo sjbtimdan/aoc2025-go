@@ -79,10 +79,10 @@ func Run(dayPuzzles []DayPuzzle) {
 	for _, channel := range channels {
 		result := <-channel
 		totalCpu += result.elapsed
-		fmt.Printf("Day %d [%.2f ms]: ", result.day, result.elapsed)
+		fmt.Printf("Day %d [%.3f ms]: ", result.day, result.elapsed)
 		fmt.Printf("Part 1: %s; Part 2: %s\n", result.answers.Part1, result.answers.Part2)
 	}
-	fmt.Printf("Total CPU time: %.2f ms\n", totalCpu)
+	fmt.Printf("Total CPU time: %.3f ms\n", totalCpu)
 }
 
 type DayFuncResult struct {
