@@ -18,11 +18,15 @@ var day3_file []byte
 //go:embed resources/day4.txt
 var day4_file []byte
 
+//go:embed resources/day5.txt
+var day5_file []byte
+
 func main() {
 	utils.Run([]utils.DayPuzzle{
 		{DayFunc: days.Day1, Input: day1_file},
 		{DayFunc: days.Day2, Input: day2_file},
 		{DayFunc: days.Day3, Input: day3_file},
 		{DayFunc: days.Day4, Input: day4_file},
+		{DayFunc: days.Day5, Input: day5_file},
 	})
 }
