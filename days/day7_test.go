@@ -20,4 +20,5 @@ func TestParseManifold(t *testing.T) {
 func TestDay7(t *testing.T) {
 	result := Day7(day7_file)
 	must.Eq(t, "21", result.Part1)
+	must.Eq(t, "40", result.Part2)
 }
