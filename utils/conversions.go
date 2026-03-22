@@ -2,7 +2,7 @@ package utils
 
 import "strconv"
 
-func ParseIntOrPanic(s string) int64 {
+func ParseInt64OrPanic(s string) int64 {
 	return OrPanic(strconv.ParseInt(string(s), 10, 64))
 }
 

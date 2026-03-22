@@ -7,12 +7,12 @@ import (
 )
 
 func TestParseIntOrPanic(t *testing.T) {
-	must.Eq(t, int64(42), ParseIntOrPanic("42"))
-	must.Eq(t, int64(-7), ParseIntOrPanic("-7"))
+	must.Eq(t, int64(42), ParseInt64OrPanic("42"))
+	must.Eq(t, int64(-7), ParseInt64OrPanic("-7"))
 }
 
 func TestParseIntOrPanic_Invalid(t *testing.T) {
-	must.Panic(t, func() { ParseIntOrPanic("abc") })
+	must.Panic(t, func() { ParseInt64OrPanic("abc") })
 }
 
 func TestParseUintOrPanic(t *testing.T) {
