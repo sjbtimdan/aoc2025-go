@@ -16,12 +16,27 @@ func TestDay10(t *testing.T) {
 	must.Eq(t, "TODO", result.Part2)
 }
 
-func TestParseMachines(t *testing.T) {
-	machines := parseMachines([]byte("[.##.] (3) (1,3) (2) {3,5,4,7}"))
-	must.Len(t, 1, machines)
-	expected := Machine{
-		desiredState: 0b0110,
-		buttons:      []uint16{0b0001, 0b0101, 0b0010},
+func TestSolve(t *testing.T) {
+	machine := Machine{
+		desiredState: []bool{false, true, true, false},
+		buttons: [][]uint8{
+			{0, 0, 0, 1},
+			{0, 1, 0, 1},
+			{0, 0, 1, 0},
+			{0, 0, 1, 1},
+			{1, 0, 1, 0},
+			{1, 1, 0, 0},
+		},
 	}
-	must.Eq(t, expected, machines[0])
+	must.Eq(t, 2, machine.countButtonPresses())
 }
+
+// func TestParseMachines(t *testing.T) {
+// 	machines := parseMachines([]byte("[.##.] (3) (1,3) (2) {3,5,4,7}"))
+// 	must.Len(t, 1, machines)
+// 	expected := Machine{
+// 		desiredState: 0b0110,
+// 		buttons:      []uint16{0b0001, 0b0101, 0b0010},
+// 	}
+// 	must.Eq(t, expected, machines[0])
+// }

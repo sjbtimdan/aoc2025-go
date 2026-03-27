@@ -3,6 +3,10 @@ package days
 import (
 	"bytes"
 	"sjbtimdan/aoc2025-go/utils"
+
+	"github.com/go-air/gini"
+	"github.com/go-air/gini/logic"
+	"github.com/go-air/gini/z"
 )
 
 func Day10(contents []byte) utils.Answers {
@@ -10,8 +14,37 @@ func Day10(contents []byte) utils.Answers {
 }
 
 type Machine struct {
-	desiredState uint16
-	buttons      []uint16
+	desiredState []bool
+	buttons      [][]uint8
+}
+
+func (m Machine) countButtonPresses() int {
+	L := logic.NewC()
+	g := gini.New()
+	L.ToCnf(g)
+	buttonPresses := []z.Lit{}
+	for i := 0; i < len(m.desiredState); i++ {
+		buttonPresses = append(buttonPresses, z.Var(1).Pos())
+	}
+	res := L.F
+	for iState, state := range m.desiredState {
+		println("Working on state: ", iState, " == ", state)
+		for ib, button := range m.buttons {
+			println("Working on button", ib)
+			buttonSwitch := button[iState]
+			if buttonSwitch == 1 {
+				res = L.Xor(buttonPresses[iState], res)
+			} else {
+				res = L.Xor(buttonPresses[iState].Not(), res)
+			}
+		}
+		if !state {
+			res = res.Not()
+		}
+		g.Add(res)
+		g.Add(0)
+	}
+	return g.Solve()
 }
 
 func parseMachines(contents []byte) []Machine {
@@ -39,8 +72,8 @@ func parseMachines(contents []byte) []Machine {
 			buttons = append(buttons, button)
 		}
 		machine := Machine{
-			desiredState: desiredState,
-			buttons:      buttons,
+			desiredState: []bool{},
+			buttons:      [][]uint8{},
 		}
 		machines = append(machines, machine)
 	}
